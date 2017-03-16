@@ -3,7 +3,6 @@ import MainForm from './form/Index';
 import MainNav from './MainNav';
 import Message from './message/Index';
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -11,27 +10,43 @@ class App extends React.Component {
           ]
 
     this.state = {
-        message: nowMessage
+        message: nowMessage,
+        show:""
     }
 
   }
   onPlayerAdd(myData){
+    let err;
     let dataName = "Anonymous"
+    let date = new Date().toJSON().slice(0,10).replace(/-/g,'/')
     let last_message = this.state.message
+
     if (myData.valueName) {
       dataName=myData.valueName
     }
-    last_message.push(
-      {
-        create:"2016-05-25",
-        name:dataName,
-        subject:myData.valueSubject,
-        message:myData.valueMessage
-      }
-    )
-    this.setState({
-      message: last_message
-    })
+    if(!myData.valueSubject){
+      err = true;
+    }
+    if(!myData.valueMessage){
+      err = true;
+    }
+
+    if (!err) {
+      last_message.push(
+        {
+          create: date,
+          name:dataName,
+          subject:myData.valueSubject,
+          message:myData.valueMessage
+        }
+      )
+
+      this.setState({
+        message: last_message
+      })
+    } else {
+      alert('please complete subject / message')
+    }
   }
   render () {
     return (

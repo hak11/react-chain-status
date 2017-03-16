@@ -1,6 +1,4 @@
 import React from 'react'
-import FormGroupInput from '../form/FormGroupInput'
-import FormGroupTextarea from '../form/FormGroupTextarea'
 
 const Message = React.createClass({
   render () {
@@ -11,11 +9,18 @@ const Message = React.createClass({
               <h3 className="panel-title">{this.props.create}</h3>
             </div>
             <div className="panel-body">
-              <form className="form-horizontal">
-              <FormGroupInput field="name" value={this.props.name} disabled />
-              <FormGroupInput field="subject" value={this.props.subject} disabled />
-              <FormGroupTextarea field="message" value={this.props.message} disabled />
-              </form>
+              <div className="row">
+                <div className="col-md-4">
+                  {this.props.name}
+                </div>
+                <div className="col-md-8">
+                  {this.props.subject}
+                </div>
+                <div className="col-md-12">
+                  <hr />
+                  {this.props.message}
+                </div>
+              </div>
           </div>
           </div>
         </div>
