@@ -8,36 +8,30 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     const nowMessage = [
-      {
-        create: "2016-05-10",
-        name: "Saya A",
-        subject : "Subject A",
-        message : "Ini Message A"
-      },
-      {
-        create: "2016-05-09",
-        name: "Saya B",
-        subject : "Subject B",
-        message : "Ini Message B"
-      },
-      {
-        create: "2016-05-08",
-        name: "Saya C",
-        subject : "Subject C",
-        message : "Ini Message C"
-      },
-      {
-        create: "2016-05-05",
-        name: "Saya D",
-        subject : "Subject D",
-        message : "Ini Message D"
-      }
-    ]
+          ]
 
-    this.state = {nowMessage}
+    this.state = {
+        message: nowMessage
+    }
+
   }
   onPlayerAdd(myData){
-    console.log(myData)
+    let dataName = "Anonymous"
+    let last_message = this.state.message
+    if (myData.valueName) {
+      dataName=myData.valueName
+    }
+    last_message.push(
+      {
+        create:"2016-05-25",
+        name:dataName,
+        subject:myData.valueSubject,
+        message:myData.valueMessage
+      }
+    )
+    this.setState({
+      message: last_message
+    })
   }
   render () {
     return (
@@ -45,13 +39,13 @@ class App extends React.Component {
         <MainNav />
         <div className="row">
           <div className="col-md-offset-3 col-md-6">
-            <MainForm onAdd={this.onPlayerAdd} />
+            <MainForm onAdd={this.onPlayerAdd.bind(this)} />
           </div>
         </div>
         <hr />
         <div className="row">
           {
-            this.state.nowMessage.map( (nowMessage) => {
+            this.state.message.map( (nowMessage) => {
             return (
               <Message key={Math.random()} name={nowMessage.name} create={nowMessage.create} subject={nowMessage.subject} message={nowMessage.message} />
               )
