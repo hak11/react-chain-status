@@ -1,7 +1,7 @@
 import React from 'react';
-import MainForm from './form/Main';
+import MainForm from './form/Index';
 import MainNav from './MainNav';
-import Message from './message/Message';
+import Message from './message/Index';
 
 
 class App extends React.Component {
@@ -36,14 +36,16 @@ class App extends React.Component {
 
     this.state = {nowMessage}
   }
-
+  onPlayerAdd(myData){
+    console.log(myData)
+  }
   render () {
     return (
       <div className="container">
         <MainNav />
         <div className="row">
           <div className="col-md-offset-3 col-md-6">
-            <MainForm />
+            <MainForm onAdd={this.onPlayerAdd} />
           </div>
         </div>
         <hr />
