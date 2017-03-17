@@ -1,8 +1,7 @@
 import React from 'react'
-import FormGroupInput from './FormGroupInput'
-import FormGroupTextarea from './FormGroupTextarea'
-import Button from './Button'
-
+import RaisedButton from 'material-ui/RaisedButton';
+import {Card, CardTitle, CardText} from 'material-ui/Card';
+import TextField from 'material-ui/TextField';
 
 class Index extends React.Component {
   constructor(props) {
@@ -38,19 +37,51 @@ class Index extends React.Component {
   }
   render () {
     return (
-      <div className="panel panel-success">
-        <div className="panel-heading">
-          <h3 className="panel-title">Add Status</h3>
-        </div>
-        <div className="panel-body">
-        <form className="form-horizontal">
-          <FormGroupInput field="name" placeholder="Your Name" value={this.state.valueName} onInputChange={this.onNameChange.bind(this)} />
-          <FormGroupInput field="subject" placeholder="Your Subject" value={this.state.valueSubject} onInputChange={this.onSubjectChange.bind(this)} />
-          <FormGroupTextarea field="message" placeholder="Your Message" value={this.state.valueMessage} onInputChange={this.onStatusChange.bind(this) } />
-          <Button onClickSomething={this.onClickForm.bind(this)} />
-        </form>
-      </div>
-      </div>
+        <Card zDepth={1} >
+         <CardTitle title="Chain Status Message" subtitle="lets make the world better with technology" />
+         <CardText>
+          <form className="row">
+            <div className="col-md-12">
+               <TextField
+                 style={{textAlign: 'left'}}
+                 hintText="Your Status Message"
+                 floatingLabelText="Message / Status"
+                 multiLine={true}
+                 rows={2}
+                 onChange={this.onStatusChange.bind(this)}
+                 defaultValue={this.state.valueMessage}
+                 fullWidth={true}
+               />
+             </div>
+              <div className="col-md-6">
+                 <TextField
+                   hintText="Anonymous"
+                   floatingLabelText="Nama *Anonymous*"
+                   onChange={this.onNameChange.bind(this)}
+                   defaultValue={this.state.valueName}
+                   fullWidth={true}
+                 />
+              </div>
+              <div className="col-md-6">
+               <TextField
+                 hintText="Your Subject"
+                 floatingLabelText="Subject"
+                 onChange={this.onSubjectChange.bind(this)}
+                 defaultValue={this.state.valueSubject}
+                 fullWidth={true}
+               />
+               </div>
+               <div className="col-md-12">
+                 <br />
+                 <RaisedButton
+                   label="Submit Message"
+                   primary={true}
+                   onClick={this.onClickForm.bind(this)}
+                  />
+               </div>
+           </form>
+        </CardText>
+       </Card>
     )
   }
 }
