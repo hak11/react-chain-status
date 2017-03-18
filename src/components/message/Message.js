@@ -2,63 +2,69 @@ import React from 'react'
 import {Card, CardActions,CardHeader,CardMedia, CardText} from 'material-ui/Card'
 import Actions from './Actions'
 import Toggle from 'material-ui/Toggle'
+import Comments from '../comment'
 
 class Message extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      expanded: false,
+      show: false,
+      showImage: false,
     };
   }
 
-  handleExpandChange = (expanded) => {
-    this.setState({expanded: expanded});
-  };
+  handleToggleImage = (event, toggle) => {
+    if (this.state.show) {
 
-  handleToggle = (event, toggle) => {
-    this.setState({expanded: toggle});
+    }
+    this.setState(
+      {
+        showImage: toggle
+      }
+    );
   };
 
   render () {
       return(
-        <Card style={{ margin:30,padding:30 }} expanded={this.state.expanded} onExpandChange={this.handleExpandChange} >
+        <Card style={{ margin:30,padding:30 }} expanded={this.state.showImage}>
           <CardText>
             <div className="row">
               <div className="col-md-9">
                 <CardHeader
                   title={this.props.name}
                   subtitle={this.props.create+" | "+this.props.subject}
-                  avatar="http://placehold.it/128x128"
                   style={{paddingTop:0}}
                 />
               </div>
               <div className="col-md-3">
                 <Toggle
-                  toggled={this.state.expanded}
-                  onToggle={this.handleToggle}
-                  style={{marginTop:-18}}
+                  toggled={this.state.showImage}
+                  onToggle={this.handleToggleImage}
+                  style={{marginTop:10}}
                   label="Show Image"
                   labelPosition="right"
                 />
-                <Toggle
-                  toggled={this.state.expanded}
-                  onToggle={this.handleToggle}
-                  label="Show Comment"
-                  labelPosition="right"
-                />
+              </div>
+              <div className="col-md-12">
+                <br />
+                {this.props.message}
               </div>
             </div>
-            {this.props.message}
           </CardText>
           <CardMedia
+            style={{textAlign:'center',margin:15}}
             expandable={true}
-            style={{textAlign:'center'}}
           >
             <img src="http://placehold.it/600x337" alt={this.props.subject} style={{maxHeight:300,maxWidth:'none',minWidth:'none',width:'initial'}} />
           </CardMedia>
-          <CardActions>
+          <CardActions style={{margin:15}}>
             <Actions handleToggle={this.handleToggle} actions={this.props.actions} />
           </CardActions>
+          <CardMedia
+            style={{marginTop:50}}
+            >
+            <Comments />
+          </CardMedia>
         </Card>
       )
   }

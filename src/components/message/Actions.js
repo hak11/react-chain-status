@@ -1,7 +1,5 @@
 import React from 'react'
-import FloatingActionButton from 'material-ui/FloatingActionButton'
-import FontIcon from 'material-ui/FontIcon'
-import Badge from 'material-ui/Badge';
+import ButtonAction from './ButtonActions';
 
 class Actions extends React.Component {
   constructor(props) {
@@ -17,51 +15,54 @@ class Actions extends React.Component {
       disableMiddle:false,
       disableMiddleDislike:false,
       disableDislike:false,
-      choiceAction:''
+      choiceAction:true
     }
   }
 
   onDisableWithout = (param,newValue) =>{
-    this.setState({
-      disableLike:true,
-      disableMiddleLike:true,
-      disableMiddle:true,
-      disableMiddleDislike:true,
-      disableDislike:true
-    })
-    switch (param) {
-      case 'like':
-        this.setState({
-          disableLike:false,
-          like:newValue
-        })
-        break;
-      case 'middle_like':
-        this.setState({
-          disableMiddleLike:false,
-          middle_like:newValue
-        })
-        break;
-      case 'middle':
-        this.setState({
-          disableMiddle:false,
-          middle:newValue
-        })
-        break;
-      case 'middle_dislike':
-        this.setState({
-          disableMiddleDislike:false,
-          middle_dislike:newValue
-        })
-        break;
-      case 'dislike':
-        this.setState({
-          disableLike:false,
-          dislike:newValue
-        })
-        break;
-      default:
-
+    if (this.state.choiceAction) {
+      this.setState({
+        disableLike:true,
+        disableMiddleLike:true,
+        disableMiddle:true,
+        disableMiddleDislike:true,
+        disableDislike:true,
+        choiceAction:false
+      })
+      console.log(param)
+      switch (param) {
+        case 'like':
+          this.setState({
+            disableLike:false,
+            like:newValue
+          })
+          break;
+        case 'middle_like':
+          this.setState({
+            disableMiddleLike:false,
+            middle_like:newValue
+          })
+          break;
+        case 'middle':
+          this.setState({
+            disableMiddle:false,
+            middle:newValue
+          })
+          break;
+        case 'middle_dislike':
+          this.setState({
+            disableMiddleDislike:false,
+            middle_dislike:newValue
+          })
+          break;
+        case 'dislike':
+          this.setState({
+            disableDislike:false,
+            dislike:newValue
+          })
+          break;
+        default:
+      }
     }
   }
 
@@ -94,75 +95,41 @@ class Actions extends React.Component {
   render () {
     return(
       <div>
-        <Badge
-          badgeContent={this.state.like}
-          secondary={true}
-          badgeStyle={{top:8, right: 15,backgroundColor:'#95a5a6'}}
-        >
-        <FloatingActionButton
-          secondary={true}
+        <ButtonAction
           onClick={this.onLike.bind(this)}
-          mini={true}
-          disabled={this.state.disableLike}
-          >
-          <FontIcon className="material-icons">mood</FontIcon>
-        </FloatingActionButton>
-      </Badge>
-      <Badge
-          badgeContent={this.state.middle_like}
-          secondary={true}
-          badgeStyle={{top: 8, right: 15,backgroundColor:'#95a5a6'}}
-        >
-        <FloatingActionButton
-          backgroundColor="#3498db"
+          value={this.state.like}
+          disable={this.state.disableLike}
+          icon='mood'
+          bgColor='#1abc9c'
+        />
+        <ButtonAction
           onClick={this.onMiddleLike.bind(this)}
-          mini={true}
-          disabled={this.state.disableMiddleLike}
-          >
-          <FontIcon className="material-icons">sentiment_satisfied</FontIcon>
-        </FloatingActionButton>
-      </Badge>
-      <Badge
-          badgeContent={this.state.middle}
-          secondary={true}
-          badgeStyle={{top: 8, right: 15,backgroundColor:'#95a5a6'}}
-        >
-        <FloatingActionButton
+          value={this.state.middle_like}
+          disable={this.state.disableMiddleLike}
+          icon='sentiment_satisfied'
+          bgColor='#2ecc71'
+        />
+        <ButtonAction
           onClick={this.onMiddle.bind(this)}
-          backgroundColor="#2ecc71"
-          mini={true}
-          disabled={this.state.disableMiddle}
-          >
-          <FontIcon className="material-icons">sentiment_neutral</FontIcon>
-        </FloatingActionButton>
-      </Badge>
-      <Badge
-          badgeContent={this.state.middle_dislike}
-          secondary={true}
-          badgeStyle={{top: 8, right: 15,backgroundColor:'#95a5a6'}}
-        >
-        <FloatingActionButton
+          value={this.state.middle}
+          disable={this.state.disableMiddle}
+          icon='sentiment_neutral'
+          bgColor='#3498db'
+        />
+        <ButtonAction
           onClick={this.onMiddleDislike.bind(this)}
-          backgroundColor="#e74c3c"
-          mini={true}
-          disabled={this.state.disableMiddleDislike}
-          >
-          <FontIcon className="material-icons">sentiment_dissatisfied</FontIcon>
-        </FloatingActionButton>
-      </Badge>
-      <Badge
-          badgeContent={this.state.dislike}
-          secondary={true}
-          badgeStyle={{top: 8, right: 15,backgroundColor:'#95a5a6'}}
-        >
-        <FloatingActionButton
+          value={this.state.middle_dislike}
+          disable={this.state.disableMiddleDislike}
+          icon='sentiment_dissatisfied'
+          bgColor='#e67e22'
+        />
+        <ButtonAction
           onClick={this.onDislike.bind(this)}
-          mini={true}
-          disabled={this.state.disableDislike}
-          >
-          <FontIcon className="material-icons">mood_bad</FontIcon>
-        </FloatingActionButton>
-      </Badge>
+          value={this.state.dislike}
+          disable={this.state.disableDislike}
+          icon='mood_bad'
+          bgColor='#e74c3c'
+        />
     </div>
     )
   }
