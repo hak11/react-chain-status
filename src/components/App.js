@@ -16,6 +16,9 @@ class App extends React.Component {
        message:"Ini Adalah Message A",
        actions:{
          like:0,
+         middle_like:0,
+         middle:0,
+         middle_dislike:0,
          dislike:0
        }
      },
@@ -27,6 +30,9 @@ class App extends React.Component {
        message:"Ini Adalah Message A",
        actions:{
          like:0,
+         middle_like:0,
+         middle:0,
+         middle_dislike:0,
          dislike:0
        }
      },
@@ -38,6 +44,9 @@ class App extends React.Component {
        message:"Ini Adalah Message A",
        actions:{
          like:0,
+         middle_like:0,
+         middle:0,
+         middle_dislike:0,
          dislike:0
        }
      },
@@ -50,7 +59,7 @@ class App extends React.Component {
     }
 
   }
-  
+
 
   onPlayerAdd(myData){
     let err;

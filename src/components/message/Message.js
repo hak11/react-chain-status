@@ -36,8 +36,14 @@ class Message extends React.Component {
                 <Toggle
                   toggled={this.state.expanded}
                   onToggle={this.handleToggle}
-                  style={{paddingTop:5}}
+                  style={{marginTop:-18}}
                   label="Show Image"
+                  labelPosition="right"
+                />
+                <Toggle
+                  toggled={this.state.expanded}
+                  onToggle={this.handleToggle}
+                  label="Show Comment"
                   labelPosition="right"
                 />
               </div>
