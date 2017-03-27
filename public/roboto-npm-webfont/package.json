@@ -1,0 +1,87 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "roboto-npm-webfont",
+        "scope": null,
+        "escapedName": "roboto-npm-webfont",
+        "name": "roboto-npm-webfont",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/var/www/html/challange"
+    ]
+  ],
+  "_from": "roboto-npm-webfont@latest",
+  "_id": "roboto-npm-webfont@0.0.2",
+  "_inCache": true,
+  "_location": "/roboto-npm-webfont",
+  "_nodeVersion": "4.4.5",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/roboto-npm-webfont-0.0.2.tgz_1466600891866_0.30766159715130925"
+  },
+  "_npmUser": {
+    "name": "vaeum",
+    "email": "vaeum@yahoo.com"
+  },
+  "_npmVersion": "2.15.5",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "roboto-npm-webfont",
+    "scope": null,
+    "escapedName": "roboto-npm-webfont",
+    "name": "roboto-npm-webfont",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/roboto-npm-webfont/-/roboto-npm-webfont-0.0.2.tgz",
+  "_shasum": "5184ace6d3b70714734d62c66beb96ad48ffc461",
+  "_shrinkwrap": null,
+  "_spec": "roboto-npm-webfont",
+  "_where": "/var/www/html/challange",
+  "author": {
+    "name": "Vaeum"
+  },
+  "bugs": {
+    "url": "https://github.com/vaeum/roboto-npm-webfont/issues"
+  },
+  "dependencies": {},
+  "description": "Roboto webfont package",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "5184ace6d3b70714734d62c66beb96ad48ffc461",
+    "tarball": "https://registry.npmjs.org/roboto-npm-webfont/-/roboto-npm-webfont-0.0.2.tgz"
+  },
+  "gitHead": "5ccd158d28b6e66996ac73441c12c6782508b46e",
+  "homepage": "https://github.com/vaeum/roboto-npm-webfont#readme",
+  "keywords": [
+    "roboto",
+    "webfont"
+  ],
+  "license": "ISC",
+  "main": "style.css",
+  "maintainers": [
+    {
+      "name": "vaeum",
+      "email": "vaeum@yahoo.com"
+    }
+  ],
+  "name": "roboto-npm-webfont",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vaeum/roboto-npm-webfont.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.0.2"
+}

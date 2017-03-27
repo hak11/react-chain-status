@@ -5,6 +5,26 @@ class Actions extends React.Component {
   constructor(props) {
     super(props);
     this.state={
+      like:0,
+      middle_like:0,
+      middle: 0,
+      middle_dislike:0,
+      dislike:0,
+      disableLike:false,
+      disableMiddleLike:false,
+      disableMiddle:false,
+      disableMiddleDislike:false,
+      disableDislike:false,
+      choiceAction:false
+    }
+  }
+
+  componentWillReceiveProps(thisProps) {
+    if (!this.props.actions) {
+      return;
+    }
+
+    this.setState({
       like:this.props.actions.like,
       middle_like:this.props.actions.middle_like,
       middle:this.props.actions.middle,
@@ -15,21 +35,20 @@ class Actions extends React.Component {
       disableMiddle:false,
       disableMiddleDislike:false,
       disableDislike:false,
-      choiceAction:true
-    }
+      choiceAction:this.props.choiceAction
+    })
   }
 
   onDisableWithout = (param,newValue) =>{
-    if (this.state.choiceAction) {
+    this.props.handleAction()
+    if (this.props.choiceAction) {
       this.setState({
         disableLike:true,
         disableMiddleLike:true,
         disableMiddle:true,
         disableMiddleDislike:true,
-        disableDislike:true,
-        choiceAction:false
+        disableDislike:true
       })
-      console.log(param)
       switch (param) {
         case 'like':
           this.setState({

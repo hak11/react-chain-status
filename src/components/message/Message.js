@@ -2,27 +2,32 @@ import React from 'react'
 import {Card, CardActions,CardHeader,CardMedia, CardText} from 'material-ui/Card'
 import Actions from './Actions'
 import Toggle from 'material-ui/Toggle'
+import CommentMessage from '../comment/CommentMessage'
 import Comments from '../comment'
+import MyImage from '../../../public/img/bg.jpg';
 
 class Message extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: false,
       showImage: false,
+      choiceAction: true
     };
   }
 
   handleToggleImage = (event, toggle) => {
-    if (this.state.show) {
-
-    }
     this.setState(
       {
         showImage: toggle
       }
     );
   };
+
+  handleResponseAct = () => {
+    this.setState({
+      choiceAction:false
+    })
+  }
 
   render () {
       return(
@@ -33,7 +38,7 @@ class Message extends React.Component {
                 <CardHeader
                   title={this.props.name}
                   subtitle={this.props.create+" | "+this.props.subject}
-                  style={{paddingTop:0}}
+                  style={{paddingTop:0,paddingLeft:0}}
                 />
               </div>
               <div className="col-md-3">
@@ -55,16 +60,35 @@ class Message extends React.Component {
             style={{textAlign:'center',margin:15}}
             expandable={true}
           >
-            <img src="http://placehold.it/600x337" alt={this.props.subject} style={{maxHeight:300,maxWidth:'none',minWidth:'none',width:'initial'}} />
+            <img src={MyImage}
+              alt={this.props.subject}
+              style={{maxHeight:300,maxWidth:'none',minWidth:'none',width:'initial'}}
+            />
           </CardMedia>
           <CardActions style={{margin:15}}>
-            <Actions handleToggle={this.handleToggle} actions={this.props.actions} />
+            <Actions
+              actions={this.props.actions}
+              choiceAction={this.state.choiceAction}
+              handleAction={this.handleResponseAct.bind(this)}
+            />
           </CardActions>
           <CardMedia
-            style={{marginTop:50}}
+            style={ !this.state.choiceAction ? {margin:50} : {display:'none'}}
             >
             <Comments />
           </CardMedia>
+          <Card
+            zDepth={1}
+            style={{marginTop:10,marginBottom:10,padding:20,backgroundColor:'#FAFAFA',margin:50}}
+            >
+            {
+              this.props.comments.map((data) => {
+                return (
+                  <CommentMessage key={data.id} actions={this.props.actions} mydata={data} />
+                )
+              })
+            }
+          </Card>
         </Card>
       )
   }

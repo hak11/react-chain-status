@@ -1,4 +1,6 @@
 ## Free Update Status for Everyone
 
+REACT_APP_BASE_URL is backend server location.
+
 - npm install
-- npm start
+- REACT_APP_BASE_URL=http://localhost:8000/ npm run start
