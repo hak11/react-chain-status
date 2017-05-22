@@ -30,6 +30,24 @@ class App extends React.Component {
       });
   }
 
+  statusListItems() {
+    return this.state.message.map((value, key) => {
+      return (
+        <div className='col-md-8 col-md-offset-2' key={key}>
+          <Message
+            name={value.name}
+            create={value.created_at}
+            subject={value.subject}
+            message={value.message}
+            actions={value.actions}
+            comments={this.dataComments(value.comments)}
+            mydata={this.state.message}
+          />
+        </div>
+      );
+    });
+  }
+
   dataComments(comments){
     let data
     Object.values(comments).map((comment) => {
@@ -112,20 +130,7 @@ class App extends React.Component {
 
         <div className="row">
         {
-          this.state.message.map( (nowMessage) => {
-          return (
-            <div className='col-md-8 col-md-offset-2' key={nowMessage.id}>
-              <Message
-                name={nowMessage.name}
-                create={nowMessage.create}
-                subject={nowMessage.subject}
-                message={nowMessage.message}
-                actions={nowMessage.actions}
-                comments={this.dataComments(nowMessage.comments)}
-              />
-            </div>
-            )
-          })
+          this.statusListItems()
         }
         </div>
 

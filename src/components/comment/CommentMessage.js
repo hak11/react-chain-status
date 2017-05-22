@@ -6,25 +6,11 @@ class CommentMessage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      choiceAction: false,
-      name:this.props.mydata.name,
-      create:'',
-      message:''
+      choiceAction: true,
+      name:this.props.name,
+      create:this.props.create,
+      message:this.props.message
     };
-  }
-
-  componentWillReceiveProps(nextProps){
-    console.log(this.props, nextProps)
-    if (!this.props.mydata) {
-      return;
-    }
-
-    this.setState({
-      choiceAction:true,
-      name:this.props.mydata.name,
-      create:this.props.mydata.create,
-      message:this.props.mydata.message
-    })
   }
 
   handleResponseAct = () => {
@@ -32,6 +18,20 @@ class CommentMessage extends React.Component {
       choiceAction:false
     })
   }
+
+  actionsListItem(){
+    return this.props.actions.map((value,key) => {
+      return <Actions
+        key={key}
+        icon={value.param_action}
+        value={value.countAction}
+        bgcolor={value.bgcolor}
+        choiceAction={this.state.choiceAction}
+        handleAction={this.handleResponseAct.bind(this)}
+      />
+    })
+  }
+
   render () {
     return(
       <Card
@@ -46,11 +46,9 @@ class CommentMessage extends React.Component {
          <p>{this.state.message}</p>
        </CardText>
        <CardActions style={{margin:15}}>
-         <Actions
-           actions={this.props.actions}
-           choiceAction={this.state.choiceAction}
-           handleAction={this.handleResponseAct.bind(this)}
-         />
+         {
+           this.actionsListItem()
+         }
        </CardActions>
       </Card>
     )

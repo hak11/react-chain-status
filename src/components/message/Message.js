@@ -11,8 +11,43 @@ class Message extends React.Component {
     super(props);
     this.state = {
       showImage: false,
-      choiceAction: true
+      choiceAction: true,
+      comments:[],
+      actions:[]
     };
+
+  }
+
+  componentWillReceiveProps(nextProps){
+    console.log(nextProps);
+  }
+
+
+  commentListItem(){
+    return this.props.comments.map((value,key) => {
+      return (
+          <CommentMessage
+          key={key}
+          actions={value.actions}
+          name={value.name}
+          message={value.message}
+          create={value.created_at}
+        />
+      )
+    })
+  }
+
+  actionsListItem(){
+    return this.props.actions.map((value,key) => {
+      return <Actions
+        key={key}
+        icon={value.param_action}
+        value={value.countAction}
+        bgcolor={value.bgcolor}
+        choiceAction={this.state.choiceAction}
+        handleAction={this.handleResponseAct.bind(this)}
+      />
+    })
   }
 
   handleToggleImage = (event, toggle) => {
@@ -66,11 +101,9 @@ class Message extends React.Component {
             />
           </CardMedia>
           <CardActions style={{margin:15}}>
-            <Actions
-              actions={this.props.actions}
-              choiceAction={this.state.choiceAction}
-              handleAction={this.handleResponseAct.bind(this)}
-            />
+            {
+              this.actionsListItem()
+            }
           </CardActions>
           <CardMedia
             style={ !this.state.choiceAction ? {margin:50} : {display:'none'}}
@@ -82,11 +115,7 @@ class Message extends React.Component {
             style={{marginTop:10,marginBottom:10,padding:20,backgroundColor:'#FAFAFA',margin:50}}
             >
             {
-              this.props.comments.map((data) => {
-                return (
-                  <CommentMessage key={data.id} actions={this.props.actions} mydata={data} />
-                )
-              })
+              this.commentListItem()
             }
           </Card>
         </Card>

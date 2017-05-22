@@ -7,32 +7,32 @@ class Index extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-        valueName: "",
-        valueSubject: "",
-        valueMessage: ""
+        formName: "",
+        formSubject: "",
+        formMessage: ""
     }
   }
   onNameChange(event) {
     this.setState({
-      valueName: event.target.value
+      formName: event.target.value
     })
   }
   onSubjectChange(event){
     this.setState({
-      valueSubject: event.target.value
+      formSubject: event.target.value
     })
   }
   onStatusChange(event){
     this.setState({
-      valueMessage: event.target.value
+      formMessage: event.target.value
     })
   }
   onClickForm(){
     this.props.onAdd(this.state)
     this.setState({
-        valueName: "",
-        valueSubject: "",
-        valueMessage: ""
+        formName: "",
+        formSubject: "",
+        formMessage: ""
     })
   }
   render () {
@@ -49,7 +49,7 @@ class Index extends React.Component {
                  multiLine={true}
                  rows={2}
                  onChange={this.onStatusChange.bind(this)}
-                 defaultValue={this.state.valueMessage}
+                 defaultValue={this.state.formMessage}
                  fullWidth={true}
                />
              </div>
@@ -58,7 +58,7 @@ class Index extends React.Component {
                    hintText="Anonymous"
                    floatingLabelText="Nama *Anonymous*"
                    onChange={this.onNameChange.bind(this)}
-                   defaultValue={this.state.valueName}
+                   defaultValue={this.state.formName}
                    fullWidth={true}
                  />
               </div>
@@ -67,7 +67,7 @@ class Index extends React.Component {
                  hintText="Your Subject"
                  floatingLabelText="Subject"
                  onChange={this.onSubjectChange.bind(this)}
-                 defaultValue={this.state.valueSubject}
+                 defaultValue={this.state.formSubject}
                  fullWidth={true}
                />
                </div>
