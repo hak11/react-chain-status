@@ -1,20 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
-import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import Routes from './routes';
+import axios from 'axios';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+
 require('flexboxgrid');
 
-const Apps = () => (
-  <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
-    <App />
-  </MuiThemeProvider>
-);
+axios.defaults.baseURL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : 'http://localhost:8000/';
+
+
 
 injectTapEventPlugin();
 ReactDOM.render(
-  <Apps />,
+  <Routes />,
   document.getElementById('root')
 );

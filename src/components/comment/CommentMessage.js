@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 import {Card, CardText,CardHeader,CardActions} from 'material-ui/Card';
-import Actions from '../message/Actions'
+import Actions from '../message/Actions';
 
 class CommentMessage extends React.Component {
   constructor(props) {
@@ -13,10 +13,16 @@ class CommentMessage extends React.Component {
     };
   }
 
-  handleResponseAct = () => {
+
+  componentWillMount(){
+    console.log(this.props);
+  }
+
+
+  handleResponseAct(){
     this.setState({
       choiceAction:false
-    })
+    });
   }
 
   actionsListItem(){
@@ -28,8 +34,8 @@ class CommentMessage extends React.Component {
         bgcolor={value.bgcolor}
         choiceAction={this.state.choiceAction}
         handleAction={this.handleResponseAct.bind(this)}
-      />
-    })
+      />;
+    });
   }
 
   render () {
@@ -37,21 +43,21 @@ class CommentMessage extends React.Component {
       <Card
         zDepth={1}
         style={{marginTop:15,marginBottom:10}}
-        >
+      >
         <CardHeader
           title={this.state.name}
           subtitle={this.state.create}
         />
-       <CardText>
-         <p>{this.state.message}</p>
-       </CardText>
-       <CardActions style={{margin:15}}>
-         {
-           this.actionsListItem()
-         }
-       </CardActions>
+        <CardText>
+          <p>{this.state.message}</p>
+        </CardText>
+        <CardActions style={{margin:15}}>
+          {
+            this.actionsListItem()
+          }
+        </CardActions>
       </Card>
-    )
+    );
   }
 }
 
