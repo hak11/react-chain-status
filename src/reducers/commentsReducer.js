@@ -17,13 +17,13 @@ export default (state=FIRST_INITIAL, action) => {
       state = {
         ...state,
         notifRequired:true
-      }
+      };
       break;
     case 'CLOSE_DIALOG':
       state = {
         ...state,
         notifRequired:false
-      }
+      };
       break;
     default:
       break;

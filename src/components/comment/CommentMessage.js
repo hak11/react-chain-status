@@ -1,6 +1,7 @@
 import React from 'react';
 import {Card, CardText,CardHeader,CardActions} from 'material-ui/Card';
 import Actions from '../message/Actions';
+import Message from '../message/Message';
 
 class CommentMessage extends React.Component {
   constructor(props) {
@@ -13,11 +14,9 @@ class CommentMessage extends React.Component {
     };
   }
 
-
   componentWillMount(){
     console.log(this.props);
   }
-
 
   handleResponseAct(){
     this.setState({
@@ -38,6 +37,23 @@ class CommentMessage extends React.Component {
     });
   }
 
+  commentListItem(){
+    if (this.props.comments.length) {
+      return this.props.comments.map((value,key) => {
+        return (
+          <Message
+            key={key}
+            actions={value.actions}
+            name={value.name}
+            message={value.message}
+            create={value.created_at}
+            comments={value.comments}
+          />
+        );
+      });
+    }
+  }
+
   render () {
     return(
       <Card
@@ -56,6 +72,13 @@ class CommentMessage extends React.Component {
             this.actionsListItem()
           }
         </CardActions>
+        <Card
+          zDepth={1}
+        >
+          {
+            this.commentListItem()
+          }
+        </Card>
       </Card>
     );
   }

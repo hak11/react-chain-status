@@ -23,7 +23,7 @@ class App extends React.Component {
               subject={value.subject}
               message={value.message}
               actions={value.actions}
-              comments={this.dataComments(value.comments)}
+              comments={value.comments}
             />
           </div>
         );
@@ -31,25 +31,11 @@ class App extends React.Component {
     }
   }
 
-  dataComments(comments){
-    let data;
-    Object.values(comments).map((comment) => {
-      return (
-        data = Object.values(comment)
-      );
-    });
-
-    if (data) {
-      return data;
-    }
-    return this.props.dataComments.comments;
-  }
-
 
   onPlayerAdd(myData){
     let err = false;
     let dataName = 'Anonymous';
-    let date = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+    // let date = new Date().toJSON().slice(0,10).replace(/-/g,'/');
 
     if (myData.valueName) {
       dataName=myData.valueName;
@@ -63,7 +49,7 @@ class App extends React.Component {
       err = true;
     }
     if (!err) {
-      this.props.addMessage();
+      this.props.addMessage(dataName,myData);
     } else {
       this.props.closeDialog();
     }

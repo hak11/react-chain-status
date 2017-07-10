@@ -17,5 +17,6 @@ export const fetchMessage = () => {
 export const addMessage = (data) => {
   return (dispatch) => {
     console.log(data);
+    console.log(dispatch);
   };
 };

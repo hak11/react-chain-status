@@ -24,7 +24,7 @@ class Message extends React.Component {
 
 
   commentListItem(){
-    if (this.props.comments.length > 12323) {
+    if (this.props.comments.length) {
       return this.props.comments.map((value,key) => {
         return (
           <CommentMessage
@@ -33,6 +33,7 @@ class Message extends React.Component {
             name={value.name}
             message={value.message}
             create={value.created_at}
+            comments={value.comments}
           />
         );
       });
@@ -114,7 +115,6 @@ class Message extends React.Component {
         </CardMedia>
         <Card
           zDepth={1}
-          style={{marginTop:10,marginBottom:10,padding:20,backgroundColor:'#FAFAFA',margin:50}}
         >
           {
             this.commentListItem()
